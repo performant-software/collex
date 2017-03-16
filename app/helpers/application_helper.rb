@@ -161,6 +161,7 @@ private
     tabs.push({ :name => Setup.community_tab(), :link => '/communities', :use_long => true }) if Setup.display_community_tab?
     tabs.push({ :name => 'Publications', :link => '/publications', :use_long => true }) if Setup.display_publications_tab?
     tabs.push({ :name => 'Search', :link => search_path }) if Setup.display_search_tab?
+    tabs.push({ :name => Setup.projects_tab(), :link => Setup.projects_url(), :use_long => true }) if Setup.display_projects_tab? and Setup.projects_url.present?
 
     if COLLEX_PLUGINS['typewright']
 		  search = tabs.pop()
