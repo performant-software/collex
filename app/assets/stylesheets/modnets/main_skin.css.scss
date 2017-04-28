@@ -60,6 +60,9 @@ body.federation-modnets {
 	background: $tab-background;
 	top: 96px;
 	font-weight: normal;
+	width: auto;
+	padding-left: 9px;
+	padding-right: 9px;
 }
 
 .tab_link_current {
@@ -73,6 +76,9 @@ body.federation-modnets {
 	background: $tab-background;
 	top: 96px;
 	font-weight: normal;
+	width: auto;
+	padding-left: 9px;
+	padding-right: 9px;
 }
 
 .tab_link_long_current,.tab_link_logo_current, .my_collex_link_current {
@@ -120,6 +126,10 @@ body.federation-modnets {
 
 		a:nth-child(4) {
 			background-color: $search-tab;
+		}
+
+		a:nth-child(5) {
+			background-color: $projects-tab;
 		}
 	}
 

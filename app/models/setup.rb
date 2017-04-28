@@ -95,6 +95,17 @@ class Setup < ActiveRecord::Base
 		return val
 	end
 
+	def self.projects_tab()
+		val = globals()['site_projects_tab']
+		val = "Projects" if val.blank?
+		return val
+	end
+
+	def self.projects_url()
+		val = globals()['site_projects_url']
+		return val
+	end
+
 	def self.default_federation()
 		return globals()['site_default_federation']
 	end
@@ -165,6 +176,11 @@ class Setup < ActiveRecord::Base
     return true if globals()['enable_news_tab'] != 'false'
     return false
   end
+
+	def self.display_projects_tab?()
+		return true if globals()['enable_projects_tab'] != 'false'
+		return false
+	end
 
 	def self.analytics_id()
 		return nil if globals()['google_analytics'] != 'true'

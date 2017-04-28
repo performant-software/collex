@@ -58,7 +58,7 @@ class Admin::SetupsController < Admin::BaseController
       params['setups'].delete('federations')
       feds = fed_str.split(",")
 
-      checkbox_keys = ['enable_community_tab', 'enable_publications_tab', 'enable_classroom_tab', 'enable_news_tab']
+      checkbox_keys = ['enable_community_tab', 'enable_publications_tab', 'enable_classroom_tab', 'enable_news_tab', 'enable_projects_tab']
       checkbox_keys.each { |key,value|
          rec = Setup.find_by_key(key)
          if rec
