@@ -172,7 +172,7 @@ namespace :deploy do
 	#		# It's ok to fail: it probably means the folder already exists.
 	#	end
 	#end
-	
+
 #  def copy_dir( start_dir, dest_dir )
 #     puts "Copying the contents of #{start_dir} to #{dest_dir}..."
 #     Dir.new(start_dir).each { |file|
@@ -615,7 +615,7 @@ namespace :deploy do
     Setup.create({ key: "enable_publications_tab", value: "true" })
     Setup.create({ key: "enable_classroom_tab", value: "true" })
     Setup.create({ key: "enable_news_tab", value: "true" })
+		Setup.create({ key: "enable_projects_tab", value: "false" })
   end
 
 end
-
