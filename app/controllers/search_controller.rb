@@ -97,7 +97,7 @@ class SearchController < ApplicationController
 	   constraints = []
 	   return constraints if query.blank?
 
-	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub', 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang', 'doc_type', 'discipline', 'fuz_q', 'fuz_t' ]
+	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub', 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang', 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'subject', 'coverage' ]
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
 	   }
@@ -106,7 +106,7 @@ class SearchController < ApplicationController
 	   query.each { |key, val|
 		   found_federation = true if key == 'f'
 		   if legal_constraints.include?(key) && val.present?
-			   if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art'
+			   if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'subject' || key == 'coverage'
 				   val = process_q_param(val)
 			   end
 			   # if we were passed fuzzy constraints, make sure that the corresponding other value is set

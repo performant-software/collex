@@ -6,6 +6,7 @@
 # cap edge_sro
 # cap edge_estc
 # cap edge_gla
+# cap edge_near
 # cap prod_nines
 # cap prod_18th
 # cap prod_mesa
@@ -13,6 +14,7 @@
 # cap prod_sro
 # cap prod_estc
 # cap prod_gla
+# cap prod_near
 
 require 'rvm/capistrano'
 require 'bundler/capistrano'
@@ -28,7 +30,8 @@ else
    puts "***"
 end
 
-set :repository, "git://github.com/collex/collex.git"
+# set :repository, "git://github.com/collex/collex.git"
+set :repository, "git://github.com/ARC-code/collex.git"
 set :scm, "git"
 set :branch, "master"
 set :deploy_via, :remote_cache
@@ -49,13 +52,15 @@ task :menu do
       '5' => { name: "cap edge_sro", computer: 'edge', skin: 'sro' },
       'e' => { name: "cap edge_estc", computer: 'edge', skin: 'estc' },
       'g' => { name: "cap edge_gla", computer: 'edge', skin: 'gla' },
+      'n' => { name: "cap edge_near", computer: 'edge', skin: 'gla' },
       '6' => { name: "cap prod_nines", computer: 'prod', skin: 'nines' },
       '7' => { name: "cap prod_18th", computer: 'prod', skin: '18th' },
       '8' => { name: "cap prod_mesa", computer: 'prod', skin: 'mesa' },
       '9' => { name: "cap prod_modnets", computer: 'prod', skin: 'modnets' },
       'S' => { name: "cap prod_sro", computer: 'prod', skin: 'sro' },
       'E' => { name: "cap prod_estc", computer: 'prod', skin: 'estc' },
-      'G' => { name: "cap prod_gla", computer: 'prod', skin: 'gla' }
+      'G' => { name: "cap prod_gla", computer: 'prod', skin: 'gla' },
+      'N' => { name: "cap prod_near", computer: 'prod', skin: 'near' }
    }
 
    tasks.each { |key, value|
@@ -137,6 +142,11 @@ task :edge_gla do
    set_application('edge', 'gla')
 end
 
+desc "Run tasks to update edge NEAR environment."
+task :edge_near do
+   set_application('edge', 'near')
+end
+
 desc "Run tasks to update production NINES environment."
 task :prod_nines do
    set_application('prod', 'nines')
@@ -170,6 +180,11 @@ end
 desc "Run tasks to update production GLA environment."
 task :prod_gla do
    set_application('prod', 'gla')
+end
+
+desc "Run tasks to update production NEAR environment."
+task :prod_near do
+   set_application('prod', 'near')
 end
 
 namespace :passenger do
@@ -225,6 +240,7 @@ after :edge_modnets, 'deploy'
 after :edge_sro, 'deploy'
 after :edge_estc, 'deploy'
 after :edge_gla, 'deploy'
+after :edge_near, 'deploy'
 after :prod_nines, 'deploy'
 after :prod_18th, 'deploy'
 after :prod_mesa, 'deploy'
@@ -232,6 +248,7 @@ after :prod_modnets, 'deploy'
 after :prod_sro, 'deploy'
 after :prod_estc, 'deploy'
 after :prod_gla, 'deploy'
+after :prod_near, 'deploy'
 after :deploy, "deploy:migrate"
 
 after "deploy:stop",    "delayed_job:stop"
@@ -281,12 +298,18 @@ task :edge_estc_setup do
    set_application('edge', 'estc')
 end
 after :edge_estc_setup, 'deploy:setup'
-   
+
 desc "Set up the edge GLA server."
 task :edge_gla_setup do
    set_application('edge', 'gla')
 end
 after :edge_gla_setup, 'deploy:setup'
+
+desc "Set up the edge NEAR server."
+task :edge_near_setup do
+   set_application('edge', 'near')
+end
+after :edge_near_setup, 'deploy:setup'
 
 desc "Set up the prod nines server."
 task :prod_nines_setup do
@@ -323,12 +346,18 @@ task :prod_estc_setup do
    set_application('prod', 'estc')
 end
 after :prod_estc_setup, 'deploy:setup'
-   
+
 desc "Set up the prod GLA server."
 task :prod_gla_setup do
    set_application('prod', 'gla')
 end
 after :prod_gla_setup, 'deploy:setup'
+
+desc "Set up the prod NEAR server."
+task :prod_near_setup do
+   set_application('prod', 'near')
+end
+after :prod_near_setup, 'deploy:setup'
 
 desc "Set up the edge server's config."
 task :setup_config do

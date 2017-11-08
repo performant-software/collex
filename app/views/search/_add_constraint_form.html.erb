@@ -153,7 +153,7 @@
              </td>
            </tr>
         <% end %>
-        <% if SKIN.upcase == 'MESA' %>
+        <% if ['MESA', 'NEAR'].include? SKIN.upcase %>
             <tr><td>Role:</td><td><%= select_tag( :search_role_type, options_from_collection_for_select([ ['', '(Select a role)'] ] + @searchable_roles, :first, :last), :class => 'search_role_type' ) %>
            <input name="search_role" id="search_role" type="text" class="search_entry_box_short" placeholder="Please select a role."/>
             </td>
@@ -177,6 +177,8 @@
            </tr>
         <% end %>
         <tr><td>Year (YYYY):</td><td><input id="search_year" name="y" type="text" class="search_entry_box" <%= "value='#{@yphrs}'" if @yphrs %> /></td></tr>
+				<tr><td>Subject:</td><td><input id="search_subject" name="subject" type="text" class="search_entry_box" <%= "value='#{@sphrs}'" if @sphrs %> /></td></tr>
+				<tr><td>Coverage:</td><td><input id="search_coverage" name="coverage" type="text" class="search_entry_box" <%= "value='#{@cphrs}'" if @cphrs %> /></td></tr>
         <tr><td colspan="3" style="text-align: right;"><input id="search_submit2" type="submit" value="Search" /></td></tr>
     </table>
 	</form>
