@@ -19,7 +19,9 @@ jQuery(document).ready(function($) {
 			lang: 'Language',
 			fuz_q: 'Search Term Fuzziness',
 			fuz_t: 'Title Fuzziness',
-			pages: 'Pages of'
+			pages: 'Pages of',
+			subject: 'Subject',
+			coverage: 'Coverage'
 		};
 		if (types[key])
 			return types[key];
@@ -91,6 +93,8 @@ jQuery(document).ready(function($) {
 			searchTypes.push(['Owner', 'r_own']);
 		}
 		searchTypes.push(['Year (YYYY)', 'y']);
+		searchTypes.push(['Subject', 'subject']);
+		searchTypes.push(['Coverage', 'coverage']);
 		var selectTypeOptions = "";
 		for (var i = 0; i < searchTypes.length; i++)
 			selectTypeOptions += window.pss.createHtmlTag("option", {value: searchTypes[i][1] }, searchTypes[i][0]);
