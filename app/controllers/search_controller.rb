@@ -31,6 +31,8 @@ class SearchController < ApplicationController
 				render "index", { layout: 'application' }
 			}
 			format.json do
+            puts '~~~~~~!!~~~~~~~'
+            puts params
             if params.has_key? :pages
                begin
                   items_per_page = 30
@@ -165,26 +167,62 @@ class SearchController < ApplicationController
 	 set_archive_toggle_state(@archives)
 	 @other_federations = []
 	 session[:federations].each { |key,val| @other_federations.push(key) if key != Setup.default_federation() } if session[:federations]
-	 @searchable_roles = [
-		 ["r_art", "Artist"],
-		 ["aut", "Author"],
-		 ["role_BND", "Binder"],
-		 ["role_COL", "Collector"],
-		 ["role_COM", "Compiler"],
-		 ["role_CRE", "Creator"],
-		 ["role_CTG", "Cartographer"],
-		 ["ed", "Editor"],
-		 ["role_ILU", "Illuminator"],
-		 ["role_LTG", "Lithographer"],
-		 ["r_own", "Owner"],
-		 ["pub", "Publisher"],
-		 ["role_POP", "Printer of plates"],
-		 ["role_PRT", "Printer"],
-		 ["role_RPS", "Repository"],
-		 ["role_SCR", "Scribe"],
-		 ["role_TRL", "Translator"],
-		 ["role_WDE", "Wood Engraver"]
-	 ]
+	 @searchable_roles = []
+   if SKIN == 'near'
+     @searchable_roles = [
+       ["role_ARR", "Arranger"],
+       ["role_ART", "Artist"],
+       ["role_ASN", "Associated name"],
+       ["role_AUT", "Author"],
+       ["role_BND", "Binder"],
+       ["role_BDD", "Binding designer"],
+       ["role_BSL", "Bookseller"],
+       ["role_CTG", "Cartographer"],
+       ["role_COM", "Compiler"],
+       ["role_CPL", "Complainant"],
+       ["role_CPH", "Copyright holder"],
+       ["role_CRT", "Court reporter"],
+       ["role_DTE", "Dedicatee"],
+       ["role_DFD", "Defendant"],
+       ["role_EDT", "Editor"],
+       ["role_EGR", "Engraver"],
+       ["role_ILL", "Illustrator"],
+       ["role_LSO", "Licensor"],
+       ["role_LTG", "Lithographer"],
+       ["role_PPM", "Papermaker"],
+       ["role_PTF", "Plaintiff"],
+       ["role_POP", "Printer of plates"],
+       ["role_PRT", "Printer"],
+       ["role_PBL", "Publisher"],
+       ["role_RPT", "Reporter"],
+       ["role_SCL", "Sculptor"],
+       ["role_STR", "Stereotyper"],
+       ["role_TRC", "Transcriber"],
+       ["role_TRL", "Translator"],
+       ["role_TYG", "Typographer"]
+     ]
+   else
+     @searchable_roles = [
+  		 ["role_ART", "Artist"],
+  		 ["aut", "Author"],
+  		 ["role_BND", "Binder"],
+  		 ["role_COL", "Collector"],
+  		 ["role_COM", "Compiler"],
+  		 ["role_CRE", "Creator"],
+  		 ["role_CTG", "Cartographer"],
+  		 ["ed", "Editor"],
+  		 ["role_ILU", "Illuminator"],
+  		 ["role_LTG", "Lithographer"],
+  		 ["r_own", "Owner"],
+  		 ["pub", "Publisher"],
+  		 ["role_POP", "Printer of plates"],
+  		 ["role_PRT", "Printer"],
+  		 ["role_RPS", "Repository"],
+  		 ["role_SCR", "Scribe"],
+  		 ["role_TRL", "Translator"],
+  		 ["role_WDE", "Wood Engraver"]
+  	 ]
+   end
    @permalink_mode = params.has_key? 'perm'
 	 return true
    end

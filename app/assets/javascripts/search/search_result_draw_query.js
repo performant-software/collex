@@ -24,8 +24,8 @@ jQuery(document).ready(function($) {
 		};
 		if (body.hasClass('federation-near') || body.hasClass('federation-collex')) {
 			types.coverage = 'Place of Publication';
-			types.publication_state = 'Publication State';
-			types.publication_city = 'Publication City';
+			types.publication_state = 'State of Publication';
+			types.publication_city = 'City of Publication';
 		}
 		else {
 			types.coverage = 'Coverage';
@@ -103,8 +103,8 @@ jQuery(document).ready(function($) {
 		searchTypes.push(['Subject', 'subject']);
     if (body.hasClass('federation-near') || body.hasClass('federation-collex')) {
       searchTypes.push(['Place of Publication', 'coverage']);
-      searchTypes.push(['Publication State', 'publication_state']);
-      searchTypes.push(['Publication City', 'publication_city']);
+      searchTypes.push(['State of Publication', 'publication_state']);
+      searchTypes.push(['City of Publication', 'publication_city']);
     }
     else {
       searchTypes.push(['Coverage', 'coverage']);
