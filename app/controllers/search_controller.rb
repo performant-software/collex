@@ -97,10 +97,23 @@ class SearchController < ApplicationController
 	   constraints = []
 	   return constraints if query.blank?
 
-	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub', 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang', 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'subject', 'coverage', 'uri' ]
+	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub', 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang', 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'subject', 'coverage', 'publication_country', 'publication_state', 'publication_city', 'uri' ]
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
 	   }
+
+     if query.has_key?('publication_state') && query.has_key?('publication_city')
+       coverage = query.has_key?('coverage') ? query['coverage'] + " " : "";
+       coverage = coverage + "\"#{query['publication_state']} #{query['publication_city']}\""
+       query['coverage'] = coverage
+     end
+
+     # prevent users from seeing error when trying to use MARC-style delimiters
+     ['subject', 'coverage'].each do |key|
+       if query.has_key?(key)
+         query[key] = query[key].gsub(/--/, " ")
+       end
+     end
 
 	   found_federation = false
 	   query.each { |key, val|

@@ -178,7 +178,13 @@
         <% end %>
         <tr><td>Year (YYYY):</td><td><input id="search_year" name="y" type="text" class="search_entry_box" <%= "value='#{@yphrs}'" if @yphrs %> /></td></tr>
 				<tr><td>Subject:</td><td><input id="search_subject" name="subject" type="text" class="search_entry_box" <%= "value='#{@sphrs}'" if @sphrs %> /></td></tr>
-				<tr><td>Coverage:</td><td><input id="search_coverage" name="coverage" type="text" class="search_entry_box" <%= "value='#{@cphrs}'" if @cphrs %> /></td></tr>
+        <% if SKIN.upcase == 'NEAR' || SKIN.upcase == 'COLLEX' %>
+           <tr><td>Place of Publication:</td><td><input id="search_coverage" name="coverage" type="text" class="search_entry_box" <%= "value='#{@cphrs}'" if @cphrs %> /></td></tr>
+           <tr><td><div style="padding-left: 20px;">State:</div></td><td><input id="search_publication_state" name="publication_state" type="text" class="search_entry_box" /></td></tr>
+           <tr><td><div style="padding-left: 20px;">City:</div></td><td><input id="search_publication_city" name="publication_city" type="text" class="search_entry_box" /></td></tr>
+        <% else %>
+				   <tr><td>Coverage:</td><td><input id="search_coverage" name="coverage" type="text" class="search_entry_box" <%= "value='#{@cphrs}'" if @cphrs %> /></td></tr>
+        <% end %>
         <tr><td colspan="3" style="text-align: right;"><input id="search_submit2" type="submit" value="Search" /></td></tr>
     </table>
 	</form>
