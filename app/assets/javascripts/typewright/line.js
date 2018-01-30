@@ -60,7 +60,7 @@ jQuery(document).ready(function($) {
 		},
 
 		doInsert: function(num) {
-		   var otherSrc = TW.lines[num - 1].src;
+            var otherSrc = num > 0 ? TW.lines[num - 1].src : TW.lines[0].src; // edited by BPT to handle cases where num = 0
 			var before = num > 0 ? TW.lines[num - 1].num : 0;
 			var after = (num < TW.lines.length) ? TW.lines[num].num : before + 1;
 			// Figure out an approximate place to put the box. It should be horizontally all the way across, and start just
