@@ -188,6 +188,7 @@ Collex::Application.routes.draw do
 			get 'documents/not_available'
 			get 'documents/not_signed_in'
 			post 'documents/instructions'
+			post 'documents/additional_markup'
 			post 'documents/:id/complete' => 'documents#page_complete'
 			post 'documents/:id/status' => 'documents#update_status'
 			post 'documents/:id/report' => 'documents#report'

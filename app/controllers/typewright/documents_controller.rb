@@ -318,6 +318,10 @@ class Typewright::DocumentsController < ApplicationController
       render :partial => '/typewright/documents/instructions'
    end
 
+   def additional_markup
+      render :partial => '/typewright/documents/additional_markup'
+   end
+
    private
 
    def get_base_uri()
