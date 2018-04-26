@@ -316,7 +316,6 @@ jQuery(document).ready(function($) {
 		html += createResultContentItem('multiple_item', 'Interviewer:', obj.role_IVR, true);
 		html += createResultContentItem('multiple_item', 'Interviewee:', obj.role_IVE, true);
 		html += createResultContentItem('multiple_item', 'Lithographer:', obj.role_LTG, true);
-		html += createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true);
 		html += createResultContentItem('multiple_item', 'Performer:', obj.role_PRF, true);
 		html += createResultContentItem('multiple_item', 'Printer:', obj.role_PRT, true);
 		html += createResultContentItem('multiple_item', 'Printer of plates:', obj.role_POP, true);
@@ -327,7 +326,6 @@ jQuery(document).ready(function($) {
 		html += createResultContentItem('multiple_item', 'Rubricator:', obj.role_RBR, true);
 		html += createResultContentItem('multiple_item', 'Scribe:', obj.role_SCR, true);
 		html += createResultContentItem('multiple_item', 'Sculptor:', obj.role_SCL, true);
-		html += createResultContentItem('multiple_item', 'Translator:', obj.role_TRL, true);
 		html += createResultContentItem('multiple_item', 'Type Designer:', obj.role_TYD, true);
 		html += createResultContentItem('multiple_item', 'Typographer:', obj.role_TYG, true);
 		html += createResultContentItem('multiple_item', 'Wood Engraver:', obj.role_WDE, true);
